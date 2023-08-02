@@ -7,12 +7,15 @@ def match_manitto(participants):
     manitto_matchings = {}
     remain_members = participants
 
+    matched_members = []
     for participant in participants:
         while True:
             manitto = choice(remain_members)
-            if manitto != participant:
+            if manitto != participant and manitto not in matched_members:
                 break
+
         manitto_matchings[participant] = manitto
+        matched_members.append(manitto)
 
     return manitto_matchings
 
