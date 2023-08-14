@@ -22,15 +22,21 @@ def match_manitto(participants):
 
 def get_participants():
     participants_file = open("participants.txt", "r")
-    return participants_file.read().split("\n")
+    participants = participants_file.read().split("\n")
+    participants.remove("")
+    return participants
 
 
 if __name__ == "__main__":
     participants = get_participants()
+    print(get_participants())
     manitto_matchings = match_manitto(participants)
 
     while True:
-        name = input("이름을 입력하세요: ")
+        try:
+            name = input("이름을 입력하세요: ")
+        except Exception:
+            continue
 
         if name not in manitto_matchings.keys():
             print("참가자 명단에서 이름을 찾을 수 없습니다. 올바른 이름을 다시 입력해 주세요.")
